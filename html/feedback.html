@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>txDESIGNER - trial development Xccelerator...</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../Scripts/jquery-1.10.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Focus On Off Code	
+        var el = $('input[type=text], textarea, input[type=password]');
+        el.focus(function (e) {
+            if (e.target.value == e.target.defaultValue)
+                e.target.value = '';
+        });
+        el.blur(function (e) {
+            if (e.target.value == '')
+                e.target.value = e.target.defaultValue;
+        });
+        $('.mandt').keydown(function () {
+            $('.mandt').removeClass('error-textbox');
+        });
+    });
+
+    //Email Address validation
+    function IsEmail(email) {
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (!regex.test(email)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function feedbackValidation() {
+        //alert('hi');
+        if ($('#frstName').val() == 0 || $('#frstName').val() == "First Name") {
+            //alert('Please enter the password');
+            $('#frstName').addClass('error-textbox');
+            $('#frstName').attr('placeholder', 'Please Enter Your Name');
+            $('#frstName').focus();
+            return false;
+        }
+        if ($('#emailId').val() == 0 || $('#emailId').val() == "Email Address") {
+            //alert('Please enter the password');
+            $('#emailId').addClass('error-textbox');
+            $('#emailId').attr('placeholder', 'Please Enter Your Email Address');
+            $('#emailId').focus();
+            return false;
+        }
+        if (!IsEmail($('#emailId').val())) {
+            $('#emailId').addClass('error-textbox');
+            $('#emailId').val('');
+            $('#emailId').attr('placeholder', 'Please Enter Correct Email Address');
+            $('#emailId').focus();
+            return false;
+        }
+        if ($('#comments').val() == 0 || $('#comments').val() == "Your Comments") {
+            //alert('Please enter the password');
+            $('#comments').addClass('error-textbox');
+            $('#comments').attr('placeholder', 'Please Enter Your Comments');
+            $('#comments').focus();
+            return false;
+        }
+    }
+
+    
+
+</script>
+</head>
+
+<body>
+<span class="header-line"></span>
+<div class="main-container">
+  <!-- Header Start -->
+  <div class="header"> <span class="header-line-inner"></span> <a href="#" class="tx-logo"></a>
+    <div class="moduleLogo"></div>
+  </div>
+  <!-- Header End --> 
+  
+  <!-- Content Start -->
+  <div class="content">
+  	<div class="termsContainer">
+  	<h1 class="light-grey">Send Your Feedback</h1>
+        <div class="feedbackformContainer">
+            <span class="raw feedbackformMargin">
+                <span class="field-left-text">Name</span>
+                <span class="field-right-obj">
+                    <input type="text" id="frstName" placeholder="First Name" value="First Name" class="form-txtfld feedbackTxtField mandt" />&nbsp;
+                    <input type="text" placeholder="Last Name" value="Last Name" class="form-txtfld feedbackTxtField" />
+                </span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                    <span class="field-left-text">Email Address</span>
+                    <span class="field-right-obj"><input type="text" id="emailId" placeholder="Email Address" value="Email Address" class="form-txtfld feedbackTxtFieldBig mandt" /></span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                    <span class="field-left-text">Organization</span>
+                    <span class="field-right-obj"><input type="text" placeholder="Organization" value="Organization" class="form-txtfld feedbackTxtFieldBig"></span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                    <span class="field-left-text">Title</span>
+                    <span class="field-right-obj"><input type="text" placeholder="Title" value="Title" class="form-txtfld feedbackTxtFieldBig"></span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                    <span class="field-left-text">Subject</span>
+                    <span class="field-right-obj"><input type="text" placeholder="Subject" value="Subject" class="form-txtfld feedbackTxtFieldBig"></span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                    <span class="field-left-text">Comments</span>
+                    <span class="field-right-obj"><textarea name="feedback" id="comments" cols="" rows="" class="feedbackTxtArea mandt">Your Comments</textarea></span>
+            </span>
+            
+            <span class="raw feedbackformMargin">
+                <input type="button" value="" class="feedbackBtn" title="Save changes" onclick="return feedbackValidation();" />
+                <input type="button" value="" class="cancel-btn-grey" title="Cancel" />
+            </span>
+            
+        </div>
+      </div>
+  </div>
+  <!-- Content End --> 
+</div>
+
+<!-- Footer Start -->
+<div class="footer light-grey"> <span class="footer-content inner-space">
+  <p class="copyright">Version 1.0<br />
+  &copy; 2013 txDES<span class="red">I</span>GNER, Powered by <strong>WINCERE, INC</strong>.</p>
+  <p class="footer-links light-grey"> 
+      <a href="help.html">FAQ</a> 
+      <a href="feedback.html">Send Feedback</a>
+      <a href="terms.html">Terms</a> 
+      <a href="privacy.html" class="last">Privacy</a> 
+  </p>
+  </span> </div>
+<!-- Footer End -->
+</body>
+</html>
