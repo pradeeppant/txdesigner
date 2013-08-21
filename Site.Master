@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="win.txDesigner.SiteMaster" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%--<%@ Register TagName="Header" TagPrefix="usr" Src="~/UserControls/Header.ascx" %>
+<%@ Register TagName="Footer" TagPrefix="usr" Src="~/UserControls/Footer.ascx" %>--%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+<title>txDESIGNER - trial development Xccelerator</title>
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-min.js" type="text/javascript"></script>
+<script src="Scripts/jquery-1.10.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // code for customized checkbox
+        $('input[name=pdfTemplate]:checkbox').change(function () {
+            $('.step-four .conversion-steps li.three').css('background-position', '-525px -661px');
+            $(this).parent('span').toggleClass('checkbox-active');
+        });
+
+        // code for customized radio button
+        $('input[name=masterSheet]:radio').click(function () {
+            $('.step-three .conversion-steps li.two').css('background-position', '-267px -667px');
+            $('input:radio[name=' + $(this).attr('name') + ']').parent().removeClass('radiobtn-active');
+            $(this).parent().addClass('radiobtn-active');
+        });
+
+        $('.user-details-bar').click(function () {
+            $('.user-details-item').slideToggle('fast');
+        });
+
+        $(document).bind("contextmenu", function (e) {
+
+            return false
+        });
+
+    });
+
+    //function for customized browse button
+
+</script>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body id="user-page">
+<form id="Form1" runat ="server">
+  <span class="header-line"></span>
+  <div class="main-container">
+    <div class="profileSetting light-grey" >
+      <%--<a href="#" id = "lnkUserName" runat = "server">Himanshu Kansara</a>--%>
+      <a href="#" id = "A1" runat = "server">
+      <asp:Label ID="lnkUserName" runat="server" Text="" ClientIDMode="Static" ></asp:Label>
+      </a>
+      <div class="profileSettingDD">
+        <ul>
+          <li class="light-grey"><a href="AccountSetting.aspx">Account Setting</a></li>
+          <li class="light-grey"><a href="Logout.aspx?SignOut=U">Sign Out</a></li>
+        </ul>
+      </div>
+
+    </div>
+     <asp:Label ID="LabelDate" runat="server" Text=""></asp:Label>
+    
+    <!-- Header Start -->
+    <div class="header"> <span class="header-line-inner"></span> <a href="Default.aspx"  class="tx-logo"></a> </div>
+    <!-- Header End --> 
+    <!-- Header Code End -->
+    
+    <asp:ContentPlaceHolder ID="MainContent" runat="server"> </asp:ContentPlaceHolder>
+  </div>
+
+  <!-- Footer Start -->
+  <div class="footer light-grey"> <span class="footer-content" id="ftrC" runat="server"> <a href="#" class="run_log" id ="rlog" runat="server"></a>
+    <p class="copyright"><asp:Label ID="lblVersion" runat="server" Text=""></asp:Label><br />&copy; 2013 txDES<span class="red">I</span>GNER, Powered by <strong>WINCERE, INC.</strong>
+      
+    </p>
+      
+    <p class="footer-links light-grey"> 
+    <a href="html/help.html" target="_blank">FAQ</a> 
+    <a href="html/feedback.html" target="_blank" class="last">Send Feedback</a> </p>
+    </span> </div>
+</form>
+</body>
+</html>

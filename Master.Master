@@ -1,0 +1,142 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="win.txDesigner.Master" 
+    EnableTheming="true" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<script type="text/javascript" src="Scripts/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript" src="js/masked.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.profileSettingDD').hide();
+        $('div.profileSetting').hover(
+		function () {
+		    var target = $('.profileSettingDD');
+		    target.stop(true, true).slideDown('fast');
+		},
+		function () {
+		    var target = $('.profileSettingDD');
+		    target.stop(true, true).slideUp('fast');
+		});
+
+        var hv = $('#usertype').val();
+        if (hv == "1") {
+            $('#liViewClients').hide();
+            $('#liViewAppsLog').hide();
+            $('#liRolePermission').hide();
+            Applog
+
+        }
+        else {
+            $('#liViewAppsLog').show();
+            $('#liRolePermission').show();
+             
+        }
+
+        $('.user-details-bar').click(function () {
+            $('.user-details-item').slideToggle('fast');
+        });
+
+        $(document).bind("contextmenu", function (e) {
+            return false
+        });
+        $('input:disabled').addClass('opacity');
+        $('select:disabled').addClass('opacity');
+
+        $('.gridTbl input:checkbox, .gridTbl input:radio').addClass('right-sapce');
+
+    });
+</script>
+<asp:ContentPlaceHolder ID="MasterHead" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+<form id="frmMaster" runat="server">
+  <span class="header-line"></span>
+  <div class="main-container">
+    <div class="profileSetting light-grey">
+      <a href="#" id = "A1" runat = "server">
+       <asp:HiddenField ID ="usertype" runat ="server" />
+      <asp:Label ID="lnkUserName" runat="server" Text="" ClientIDMode="Static" ></asp:Label>
+      </a>
+      <div class="profileSettingDD">
+        <ul>
+          <li class="light-grey"><a href="ChangePassword.aspx">Change Password</a></li>
+          <li class="light-grey" runat ="server" id ="cprofile"><a href="UpdateClient.aspx">Client Profile</a></li>
+          <li class="light-grey"><a href="Logout.aspx?SignOut=A">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>    
+    <div class="addClientBtn" id="divAddClientBtn" runat="server"  visible="false">
+        <asp:LinkButton ID="btnAddClients" runat="server" Text="Add Client" CommandArgument="Add" ToolTip="Add" OnClick="btnAddClients_Click"></asp:LinkButton>
+      </div>
+    <!-- Header Start -->
+    
+       <asp:Label ID="LabelDate" runat="server" Text=""></asp:Label>
+    <div class="header"> <span class="header-line-inner"></span> <a href="#" class="tx-logo"></a>
+      <div class="moduleLogo"></div>
+    </div>
+    <!-- Header End --> 
+    
+    <!-- Content Start -->
+    <div class="content"> 
+      <!-- admin content holder starts -->
+      <div class="adminContainer"> 
+        <!-- Left Icon tab starts -->
+        <div class="iconTab">
+          <ul>
+            <li id = "liViewClients" runat="server" clientidmode="Static"> <a href="ViewClients.aspx" title="Clients" ><img src="images/clientsIcon_active.png" alt="Clients" width="38" height="40" id="imgViewClient" clientidmode="Static"  runat="server"  /></a></li>
+            <li id = "liRolePermission" runat="server" clientidmode="Static"><a href="RolePermission.aspx" title="Roles &amp; Permissions"><img src="images/rolesIocn.png" alt="Roles &amp; Permission" width="39" height="39"  id="imgRolePermission" clientidmode="Static"  runat="server" /></a></li>
+            <li id = "liViewUsers" runat="server" clientidmode="Static"><a href="ViewUsers.aspx" title="Users"><img src="images/usersIcon.png" alt="Users" width="43" height="36" id="imgViewUsers" clientidmode="Static"  runat="server"  /></a></li>
+            <li id = "liViewLog" runat="server" clientidmode="Static"><a href="ViewLog.aspx" title="Logs"><img src="images/logsIcon.png" alt="Logs" width="34" height="36"  id="imgViewLog" clientidmode="Static"  runat="server" /></a></li>
+            <li id = "liViewAppsLog" runat="server" clientidmode="Static" ><a href="ViewAppsLog.aspx" title="App Logs"><img src="images/applogIcon.png" alt="App Logs" width="37" height="37" id="imgViewAppsLog" clientidmode="Static"  runat="server"  /></a></li>
+            <li id = "liViewUserConversionLog" runat="server" clientidmode="Static"><a href="ViewUserConversionLog.aspx" title="Audit Trail" ><img src="images/runlogIcon.png" alt="Audit Trial" width="38" height="38" id="imgViewUserConversionLog" clientidmode="Static"  runat="server" /></a></li>
+          </ul>
+        </div>
+          
+        <!-- Left Icon tab ends --> 
+      <%--  <asp:ScriptManager ID="ScriptManager1" runat="server">
+          </asp:ScriptManager>--%>
+        <!-- Grid Container starts -->
+        <div class="gridHolder">
+         
+        <a class="converter-pdf" target="_blank" href="Default.aspx" title="User Module"></a>
+             
+              <asp:ContentPlaceHolder ID="MasterContent" runat="server">
+           
+              </asp:ContentPlaceHolder>
+             
+        </div>
+        <div class="clear"></div>
+        
+        <div class="down-shadow"></div>
+        <!-- Grid Container ends --> 
+        
+      </div>
+      <!-- admin content holder ends --> 
+    </div>
+    <!-- Content End --> 
+  </div>
+  
+  <!-- Footer Start -->
+  <div class="footer light-grey"> <span class="footer-content inner-space">
+    <p class="copyright"><asp:Label ID="lblVersion" runat="server" Text=""></asp:Label><br />&copy; 2013 txDES<span class="red">I</span>GNER, Powered by <strong>WINCERE, INC.</strong>
+     
+    </p>
+    <p class="footer-links light-grey"> 
+   <%--  <a href="html/admin-help.html" target="_blank">FAQ</a>--%>
+     <a href="html/feedback.html" target="_blank" class="last">Send Feedback</a></p>
+    </span> </div>
+</form>
+</body>
+</html>
+
